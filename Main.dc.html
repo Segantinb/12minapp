@@ -1,0 +1,1249 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>12min — Página de conversão</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'Inter',sans-serif;background:#F4F5F8;color:#131937;-webkit-font-smoothing:antialiased}
+a{color:#4357AD}
+a:hover{color:#31428B}
+.section-inner{max-width:1120px;margin:0 auto;padding:64px 24px}
+@media (min-width:900px){.section-inner{padding:112px 40px}}
+.two-col{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
+@media (min-width:900px){.two-col{grid-template-columns:1.1fr 0.9fr;gap:64px}}
+.two-col-rev{display:grid;grid-template-columns:1fr;gap:40px;align-items:center}
+@media (min-width:900px){.two-col-rev{grid-template-columns:0.9fr 1.1fr;gap:64px}}
+.steps-panel{border:1px solid #EDEEF1;border-radius:8px;overflow:hidden;background:#FFFFFF}
+.steps-panel-inner{display:grid;grid-template-columns:1fr}
+.steps-panel-inner>div{padding:32px;border-bottom:1px solid #EDEEF1}
+.steps-panel-inner>div:last-child{border-bottom:none}
+@media (min-width:700px){
+  .steps-panel-inner{grid-template-columns:repeat(2,1fr)}
+  .steps-panel-inner>div:nth-child(odd){border-right:1px solid #EDEEF1}
+  .steps-panel-inner>div:nth-child(3),.steps-panel-inner>div:nth-child(4){border-bottom:none}
+}
+@media (min-width:1100px){
+  .steps-panel-inner{grid-template-columns:repeat(4,1fr)}
+  .steps-panel-inner>div{border-bottom:none;border-right:1px solid #EDEEF1}
+  .steps-panel-inner>div:last-child{border-right:none}
+}
+.tst-columns{display:flex; justify-content:center; gap:24px; margin-top:8px; max-height:620px; overflow:hidden; -webkit-mask-image:linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent); mask-image:linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);}
+.tst-col{flex:1 1 0; min-width:0; max-width:340px; display:none}
+.tst-col-1{display:block}
+@media (min-width:700px){.tst-col-2{display:block}}
+@media (min-width:1000px){.tst-col-3{display:block}}
+.tst-track{display:flex; flex-direction:column; gap:20px; animation:tstScroll linear infinite; will-change:transform}
+.tst-columns:hover .tst-track{animation-play-state:paused}
+@keyframes tstScroll{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.tst-card{background:#FFFFFF; border:1px solid #EDEEF1; border-radius:16px; padding:26px; display:flex; flex-direction:column; gap:16px; box-shadow:0 1px 3px rgba(0,0,0,0.08); transition:transform 0.25s ease, box-shadow 0.25s ease}
+.tst-card:hover{transform:translateY(-4px); box-shadow:0 8px 24px -4px rgba(0,0,0,0.12)}
+@media (prefers-reduced-motion: reduce){.tst-track{animation:none}}
+.chip-row{display:flex;flex-wrap:wrap;gap:12px}
+.offer-row{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid rgba(251,247,240,0.16)}
+.faq-item{padding:28px 0;border-bottom:1px solid #EDEEF1}
+.flip-card{perspective:800px}
+.flip-card:hover .flip-card-inner{transform:rotateY(180deg)}
+.pres-cta{transition:filter 0.15s ease, transform 0.15s ease}
+.pres-cta:hover{filter:brightness(0.92)}
+.pres-cta:active{transform:scale(0.98)}
+@keyframes scrollHintBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+.scroll-hint{animation:scrollHintBounce 1.6s ease-in-out infinite}
+.nav{position:sticky; top:0; z-index:60; width:100%; border-bottom:1px solid #EDEEF1; background:rgba(255,255,255,0.92); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);}
+.nav-inner{max-width:1120px; margin:0 auto; padding:0 16px; height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px;}
+@media (min-width:768px){.nav-inner{padding:0 24px}}
+.nav-cta{display:inline-flex; align-items:center; height:44px; padding:0 24px; border-radius:999px; font-size:15px; font-weight:600; white-space:nowrap; color:#FFFFFF; background:#4357AD; text-decoration:none; transition:background 0.15s ease, transform 0.15s ease;}
+@media (max-width:520px){.nav-cta{height:40px; font-size:14px; padding:0 18px}}
+.nav-cta:hover{background:#31428B; transform:translateY(-1px);}
+.glass-grid{display:grid; grid-template-columns:1fr; gap:48px; align-items:start}
+.glass-grid>*{min-width:0}
+@media (min-width:900px){.glass-grid{grid-template-columns:1.15fr 0.85fr; gap:56px}}
+.glass-card{position:relative; overflow:hidden; border-radius:24px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.06); box-shadow:0px 8px 24px -4px rgba(0,0,0,0.35);}
+.glass-pill{display:inline-flex; align-items:center; gap:8px; padding:8px 14px; border-radius:999px; border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.06);}
+.glass-tag{display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.06); font-size:10px; font-weight:600; letter-spacing:0.08em; color:#C7C9D6;}
+.glass-stat{display:flex; flex-direction:column; align-items:center; gap:2px; transition:transform 0.2s ease}
+.glass-stat:hover{transform:translateY(-3px)}
+.glass-divider{width:1px; align-self:stretch; background:rgba(255,255,255,0.12); margin:0 auto}
+.mq-window{position:relative; display:flex; overflow:hidden; -webkit-mask-image:linear-gradient(to right, transparent, #000 14%, #000 86%, transparent); mask-image:linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);}
+.mq-track{display:flex; gap:12px; padding:0 14px; animation:mqScroll 38s linear infinite; will-change:transform}
+.mq-window:hover .mq-track{animation-play-state:paused}
+@keyframes mqScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mq-track img{height:84px; width:56px; object-fit:cover; border-radius:8px; display:block; opacity:0.72; transition:opacity 0.2s ease, transform 0.2s ease}
+.mq-track img:hover{opacity:1; transform:scale(1.04)}
+@keyframes livePing{0%{transform:scale(1);opacity:0.75}75%,100%{transform:scale(2);opacity:0}}
+.live-ping{position:absolute; inset:0; border-radius:50%; background:#6DFFB4; animation:livePing 1.8s cubic-bezier(0,0,0.2,1) infinite}
+.btn-light{display:inline-flex; align-items:center; justify-content:center; gap:8px; height:52px; padding:0 24px; border-radius:999px; border:none; background:#FFFFFF; color:#131937; font-family:'Inter',sans-serif; font-weight:600; font-size:16px; cursor:pointer; transition:transform 0.15s ease, background 0.15s ease}
+.btn-light:hover{background:#EDEEF1; transform:translateY(-1px)}
+.btn-primary{display:inline-flex; align-items:center; justify-content:center; gap:8px; height:52px; padding:0 24px; border-radius:999px; border:none; background:#4357AD; color:#FFFFFF; font-family:'Inter',sans-serif; font-weight:600; font-size:16px; cursor:pointer; transition:background 0.15s ease, transform 0.15s ease}
+.btn-primary:hover{background:#31428B; transform:translateY(-1px)}
+.btn-outline{display:inline-flex; align-items:center; justify-content:center; gap:8px; height:52px; padding:0 24px; border-radius:999px; border:1px solid rgba(19,25,55,0.22); background:rgba(255,255,255,0.5); color:#131937; font-family:'Inter',sans-serif; font-weight:600; font-size:16px; cursor:pointer; transition:background 0.15s ease, transform 0.15s ease}
+.btn-outline:hover{background:#FFFFFF; transform:translateY(-1px)}
+.btn-glass{display:inline-flex; align-items:center; justify-content:center; gap:8px; height:52px; padding:0 24px; border-radius:999px; border:1px solid rgba(255,255,255,0.14); background:rgba(255,255,255,0.06); color:#FFFFFF; font-family:'Inter',sans-serif; font-weight:600; font-size:16px; cursor:pointer; transition:background 0.15s ease, transform 0.15s ease}
+.btn-glass:hover{background:rgba(255,255,255,0.12); transform:translateY(-1px)}
+.phone-frame{position:relative; width:100%; max-width:380px; margin:0 auto; border-radius:24px; padding:0; overflow:hidden; border:1px solid rgba(255,255,255,0.14); background:#1A2143; box-shadow:0px 8px 24px -4px rgba(0,0,0,0.35);}
+.phone-screen{position:relative; width:100%; border-radius:24px; overflow:hidden; background:transparent; display:flex; flex-direction:column; padding:14px 14px 0;}
+.phone-status{display:flex; align-items:center; justify-content:space-between; height:26px; padding:0 6px; font-size:11px; font-weight:600; color:#FFFFFF;}
+.phone-body{display:flex; flex-direction:column; gap:12px; padding-top:14px;}
+.phone-tabbar{display:flex; align-items:center; justify-content:space-around; height:56px; padding:0 18px; background:transparent;}
+.phone-home{width:110px; height:4px; border-radius:999px; background:rgba(255,255,255,0.45); margin:8px auto 8px;}
+@media (prefers-reduced-motion: reduce){.mq-track{animation:none}.live-ping{animation:none}}
+.eyebrow{display:inline-block; font-family:'Inter',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#4357AD;}
+.eyebrow-on-dark{color:#6DFFB4;}
+.feature-card{background:#FFFFFF; border-radius:24px; padding:32px;}
+@media (min-width:700px){.feature-card{padding:56px}}
+.feature-card-dark{background:#131937; border-radius:24px; padding:32px; color:#FFFFFF;}
+@media (min-width:700px){.feature-card-dark{padding:56px}}
+.check-list{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px;}
+.check-item{display:flex; align-items:center; gap:10px; font-size:16px; line-height:1.5; color:#5E6471;}
+.check-item svg{flex-shrink:0;}
+.check-item-dark{color:#C7C9D6;}
+.faq-details{border-bottom:1px solid rgba(255,255,255,0.14); padding:24px 0;}
+.faq-details summary{display:flex; align-items:center; justify-content:space-between; gap:16px; cursor:pointer; list-style:none; font-size:17px; font-weight:600; color:#FFFFFF;}
+.faq-details summary::-webkit-details-marker{display:none;}
+.faq-icon{flex-shrink:0; transition:transform 0.2s ease;}
+.faq-details[open] .faq-icon{transform:rotate(45deg);}
+.faq-details p{margin:16px 0 0 0; font-size:16px; line-height:1.6; color:#C7C9D6;}
+.feat-grid{display:grid; grid-template-columns:1fr; gap:32px; align-items:center;}
+.feat-grid>*{min-width:0}
+@media (min-width:900px){.feat-grid{grid-template-columns:1fr 1fr; gap:56px}}
+.feat-list{position:relative; height:420px; overflow:hidden; padding:8px; border-radius:20px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.05); -webkit-mask-image:linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent); mask-image:linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);}
+.feat-track{display:flex; flex-direction:column; animation:featScroll 34s linear infinite; will-change:transform}
+.feat-list:hover .feat-track{animation-play-state:paused}
+@keyframes featScroll{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@media (prefers-reduced-motion: reduce){.feat-track{animation:none}}
+.feat-row{display:flex; align-items:center; gap:14px; padding:14px 12px; border-radius:14px; transition:background 0.15s ease;}
+.feat-row:hover{background:rgba(255,255,255,0.08)}
+.feat-ico{display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:12px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.14); flex-shrink:0;}
+.feat-txt{flex:1; min-width:0; display:flex; flex-direction:column; gap:2px;}
+.feat-name{font-size:15px; font-weight:600; color:#FFFFFF;}
+.feat-sub{font-size:13px; line-height:1.4; color:#9095A2;}
+.feat-chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:28px;}
+.feat-chip{display:inline-flex; align-items:center; padding:9px 16px; border-radius:999px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.16); font-size:14px; font-weight:600; color:#FFFFFF;}
+.feat-chip-accent{background:#6DFFB4; border-color:#6DFFB4; color:#131937;}
+.price-grid{display:grid; grid-template-columns:1fr; gap:20px; align-items:start; margin-top:32px;}
+@media (min-width:860px){.price-grid{grid-template-columns:repeat(3,1fr); gap:24px}}
+.price-card{display:flex; flex-direction:column; gap:20px; padding:28px; border-radius:24px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.06); transition:transform 0.2s ease, border-color 0.2s ease;}
+.price-card:hover{transform:translateY(-3px); border-color:rgba(255,255,255,0.24);}
+.price-card.is-featured{border-color:rgba(109,255,180,0.55); background:rgba(255,255,255,0.1);}
+.price-head{display:flex; align-items:center; justify-content:space-between; gap:12px;}
+.price-plan{display:flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:#C7C9D6;}
+.price-badge{display:inline-flex; align-items:center; padding:4px 12px; border-radius:999px; background:#6DFFB4; color:#131937; font-size:11px; font-weight:700; letter-spacing:0.04em; white-space:nowrap;}
+.price-value{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;}
+.price-main{font-family:'Poppins',sans-serif; font-size:34px; font-weight:700; letter-spacing:-0.02em; line-height:1; color:#FFFFFF;}
+.price-period{font-size:14px; color:#9095A2;}
+.price-old{font-size:14px; color:#858B99; text-decoration:line-through;}
+.price-list{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px;}
+.price-list li{display:flex; align-items:flex-start; gap:10px; font-size:15px; line-height:1.5; color:#C7C9D6;}
+.price-note{margin:0; padding-top:16px; border-top:1px solid rgba(255,255,255,0.12); font-size:13px; line-height:1.5; color:#9095A2;}
+.btn-outline-dark{display:inline-flex; align-items:center; justify-content:center; gap:8px; width:100%; height:52px; padding:0 24px; border-radius:999px; border:1px solid rgba(255,255,255,0.28); background:transparent; color:#FFFFFF; font-family:'Inter',sans-serif; font-weight:600; font-size:16px; cursor:pointer; transition:background 0.15s ease, transform 0.15s ease;}
+.btn-outline-dark:hover{background:rgba(255,255,255,0.1); transform:translateY(-1px);}
+.pricing-badge{display:inline-flex; align-items:center; padding:6px 14px; background:#6DFFB4; color:#131937; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:0.04em;}
+.ov-eyebrow{display:block; font-size:11px; letter-spacing:0.14em; margin-bottom:16px;}
+.ov-title{margin:0 0 48px 0; max-width:860px; font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(26px,3.6vw,42px); line-height:1.18; letter-spacing:-0.02em; color:#131937;}
+@media (min-width:900px){.ov-title{margin-bottom:64px}}
+.ov-grid{display:grid; grid-template-columns:1fr; gap:32px; align-items:center;}
+@media (min-width:640px){.ov-grid{grid-template-columns:1.25fr 1fr; gap:clamp(32px,5vw,64px)}}
+.ov-media{position:relative; width:100%; aspect-ratio:4/3; border-radius:24px; overflow:hidden; background:#E1E7FF; border:2px dashed #C7C9D2; display:flex; align-items:center; justify-content:center;}
+.ov-media-glow{position:absolute; inset:0; background:radial-gradient(circle at 72% 28%, rgba(255,255,255,0.22), rgba(255,255,255,0) 58%), radial-gradient(circle at 10% 100%, rgba(19,25,55,0.35), rgba(19,25,55,0) 55%);}
+.ov-phone{position:absolute; left:8%; top:12%; width:clamp(150px,42%,240px); aspect-ratio:9/19; background:#131937; border-radius:24px; padding:8px; transform:rotate(-9deg); box-shadow:0px 8px 24px -4px rgba(0,0,0,0.30);}
+.ov-screen{position:relative; width:100%; height:100%; background:#FFFFFF; border-radius:16px; overflow:hidden; padding:30px 12px 12px; display:flex; flex-direction:column; gap:10px; font-family:'Inter',sans-serif;}
+.ov-notch{position:absolute; top:8px; left:50%; transform:translateX(-50%); width:34%; height:14px; background:#000000; border-radius:999px;}
+.ov-float{position:absolute; right:6%; top:24%; width:40%; padding:16px; border-radius:16px; background:rgba(255,255,255,0.16); border:1px solid rgba(255,255,255,0.32); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); display:flex; flex-direction:column; gap:8px; font-family:'Inter',sans-serif; box-shadow:0px 8px 24px -4px rgba(19,25,55,0.25);}
+.ov-lead{margin:0 0 32px 0; font-size:18px; line-height:1.6; color:#5E6471;}
+.ov-list{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:16px;}
+.ov-list li{display:flex; align-items:flex-start; gap:12px; font-size:16px; line-height:1.5; color:#5E6471;}
+.ov-check{flex-shrink:0; width:24px; height:24px; border-radius:50%; background:#E1E7FF; display:flex; align-items:center; justify-content:center; margin-top:1px;}
+</style>
+</helmet>
+
+<div style="width:100%; min-height:100vh; background:#F4F5F8; font-family:'Inter',sans-serif; color:#131937;">
+
+<!-- ============ NAVBAR ============ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#topo" aria-label="12min — início" style="display:flex;">
+      <img src="./assets/04e25fbef7a0a20e0da96e877583551d.png" alt="12min" style="height:18px; width:auto; display:block;">
+    </a>
+    <a href="#oferta" class="nav-cta">Começar agora</a>
+  </div>
+</header>
+
+<!-- ===== BLOCO ESCURO ÚNICO: dobras 1 e 2 dividem o mesmo fundo ===== -->
+<div id="topo" style="position:relative; width:100%; background:linear-gradient(180deg,#131937 0,#131937 calc(100% - 95vh),#151B3B calc(100% - 86vh),#181E40 calc(100% - 77vh),#1B2247 calc(100% - 68vh),#1F274F calc(100% - 60vh),#242D5A calc(100% - 53vh),#2A3466 calc(100% - 46vh),#323E75 calc(100% - 40vh),#3E4C89 calc(100% - 34vh),#4F5D9C calc(100% - 28vh),#6470B0 calc(100% - 23vh),#8089C4 calc(100% - 18vh),#9FA7D6 calc(100% - 13vh),#BEC5E6 calc(100% - 9vh),#D9DDF0 calc(100% - 5vh),#EBEDF7 calc(100% - 2vh),#F4F5F8 100%);">
+<div style="position:absolute; inset:0; z-index:0; pointer-events:none; background:radial-gradient(70vw 60vh at 15% 8vh, rgba(67,87,173,0.55), rgba(19,25,55,0) 70%), radial-gradient(60vw 55vh at 88% calc(100% - 42vh), rgba(109,255,180,0.13), rgba(19,25,55,0) 70%);"></div>
+
+<!-- ============ 1. HERO ============ -->
+<section id="hero-scroll-wrapper" style="position:relative; width:100%; height:320vh; background:transparent;">
+  <div id="hero-sticky" style="position:sticky; top:0; left:0; width:100%; height:100vh; overflow:hidden;">
+
+    <div id="hero-cards" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
+      <sc-for list="{{items}}" as="card" hint-placeholder-count="12">
+        <div class="flip-card" style="position:absolute; left:50%; top:50%; width:{{card.w}}px; height:{{card.h}}px; transform:{{card.transform}}; opacity:{{card.opacity}}; transition:{{card.transition}};">
+          <div class="flip-card-inner" style="position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform 0.6s cubic-bezier(0.4,0.2,0.2,1);">
+            <div style="position:absolute; inset:0; border-radius:12px; overflow:hidden; box-shadow:0 8px 24px -4px rgba(0,0,0,0.12); background:#0A0A0A; backface-visibility:hidden;">
+              <img src="{{card.cover}}" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+            </div>
+            <div style="position:absolute; inset:0; border-radius:12px; overflow:hidden; background:#0A0A0A; backface-visibility:hidden; transform:rotateY(180deg); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0px; padding:4px; text-align:center;">
+              <span style="font-family:'Poppins',sans-serif; font-size:22px; font-weight:700; line-height:1; letter-spacing:-0.02em; color:{{accent2}};">12</span>
+              <span style="font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#FFFFFF;">min</span>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:0 24px; pointer-events:none; opacity:{{stage1Opacity}}; transform:translateY({{stage1Y}}px); transition:opacity 0.5s ease, transform 0.5s ease; z-index:5;">
+      <h1 style="margin:0; max-width:{{heroTitleMaxW}}px; font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(26px,3.6vw,44px); line-height:1.05; letter-spacing:-0.02em; color:#FFFFFF;">Você sabe que deveria <span style="background:linear-gradient(120deg,#FFFFFF 0%,#FFFFFF 35%,{{accent2}} 100%); -webkit-background-clip:text; background-clip:text; color:transparent;">aprender mais.</span></h1>
+    </div>
+
+    <div style="position:absolute; left:0; right:0; top:12%; z-index:15; display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 24px; pointer-events:none; opacity:{{stage2Opacity}}; transform:translateY({{stage2Y}}px); transition:opacity 0.5s ease, transform 0.5s ease;">
+      <h2 style="margin:0 0 16px 0; max-width:680px; font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(24px,3.6vw,40px); line-height:1.05; letter-spacing:-0.02em; color:#FFFFFF;">Mas será que sabe o que <span style="background:linear-gradient(120deg,#FFFFFF 0%,#FFFFFF 35%,{{accent2}} 100%); -webkit-background-clip:text; background-clip:text; color:transparent;">realmente precisa aprender?</span></h2>
+      <div style="display:flex; flex-direction:column; gap:6px; max-width:560px;">
+        <p style="margin:0; font-size:18px; font-weight:500; line-height:1.6; color:#C7C9D6; opacity:{{stage2Opacity}}; transform:translateY({{stage2Y}}px); transition:opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s;">São tantos livros, assuntos e informações que fica difícil saber por onde começar.</p>
+        <p style="margin:0; font-size:18px; font-weight:500; line-height:1.6; color:#C7C9D6; opacity:{{stage2Opacity}}; transform:translateY({{stage2Y}}px); transition:opacity 0.6s ease 0.35s, transform 0.6s ease 0.35s;">E quando você finalmente encontra um conteúdo interessante, falta tempo para consumir.</p>
+        <p style="margin:8px 0 0 0; font-size:18px; font-weight:500; line-height:1.6; color:#FFFFFF; opacity:{{stage2Opacity}}; transform:translateY({{stage2Y}}px); transition:opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s;">Foi justamente para resolver esse problema que surgiu o 12min.</p>
+      </div>
+    </div>
+
+    <div style="position:absolute; left:50%; bottom:32px; transform:translateX(-50%); z-index:10; display:flex; flex-direction:column; align-items:center; gap:6px; opacity:{{hintOpacity}}; transition:opacity 0.4s ease;">
+      <span style="font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#9095A2;">Role para explorar</span>
+      <svg class="scroll-hint" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9095A2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 2. APRESENTAÇÃO ============ -->
+<section id="presentation-section" style="position:relative; width:100%; background:transparent; overflow:hidden;">
+
+  <div class="section-inner" style="position:relative;">
+    <div class="glass-grid">
+
+      <!-- coluna esquerda -->
+      <div style="display:flex; flex-direction:column; gap:28px; opacity:{{presOpacity}}; transform:translateY({{presY}}px); filter:blur({{presBlur}}px); transition:opacity 0.6s ease, transform 0.6s ease, filter 0.6s ease;">
+        <div>
+          <span class="glass-pill">
+            <span style="font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#C7C9D6;">Mais de 3.500 microbooks</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="{{accent2}}" aria-hidden="true"><path d="M12 2l2.9 6.3 6.8.8-5 4.6 1.3 6.8L12 17.3 6 20.5l1.3-6.8-5-4.6 6.8-.8z"></path></svg>
+          </span>
+        </div>
+
+        <h2 style="margin:0; font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(32px,5vw,60px); line-height:1.05; letter-spacing:-0.02em; color:#FFFFFF;">
+          Uma forma mais simples<br>
+          de transformar livros em<br>
+          <span style="background:linear-gradient(120deg,#FFFFFF 0%,#FFFFFF 40%,{{accent2}} 100%); -webkit-background-clip:text; background-clip:text; color:transparent;">aprendizado.</span>
+        </h2>
+
+        <p style="margin:0; max-width:520px; font-size:18px; line-height:1.6; color:#D6DAE6;">Conheça os principais aprendizados de grandes livros em conteúdos que você consegue consumir em aproximadamente 12 minutos.</p>
+
+        <div style="display:flex; flex-wrap:wrap; gap:16px;">
+          <button type="button" class="btn-light">
+            Começar a aprender agora
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#131937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- coluna direita: o mesmo conteúdo, agora dentro de uma tela de celular -->
+      <div style="opacity:{{presOpacity}}; transform:translateY({{presY}}px); filter:blur({{presBlur}}px); transition:opacity 0.6s ease 0.12s, transform 0.6s ease 0.12s, filter 0.6s ease 0.12s;">
+        <div class="phone-frame">
+          <div class="phone-screen">
+
+            <div class="phone-status">
+              <span>9:41</span>
+              <span style="display:flex; align-items:center; gap:5px;">
+                <svg width="14" height="11" viewBox="0 0 18 14" fill="#FFFFFF" aria-hidden="true"><rect x="0" y="9" width="3" height="5" rx="1"></rect><rect x="5" y="6" width="3" height="8" rx="1"></rect><rect x="10" y="3" width="3" height="11" rx="1"></rect><rect x="15" y="0" width="3" height="14" rx="1" opacity="0.4"></rect></svg>
+                <svg width="14" height="11" viewBox="0 0 16 12" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M1 4.2a10 10 0 0 1 14 0"></path><path d="M3.6 7a6.4 6.4 0 0 1 8.8 0"></path><path d="M6.2 9.7a2.7 2.7 0 0 1 3.6 0"></path></svg>
+                <svg width="22" height="11" viewBox="0 0 26 13" fill="none" aria-hidden="true"><rect x="0.6" y="0.6" width="21" height="11.8" rx="3.4" stroke="#FFFFFF" stroke-opacity="0.5"></rect><rect x="2.4" y="2.4" width="14" height="8.2" rx="2" fill="#FFFFFF"></rect><path d="M24 4.6v3.8a2.2 2.2 0 0 0 0-3.8z" fill="#FFFFFF" fill-opacity="0.5"></path></svg>
+              </span>
+            </div>
+
+            <div class="phone-body">
+
+              <div style="display:flex; align-items:center; justify-content:space-between;">
+                <img src="./assets/b018979ac15e8875c97de3ed3b46022f.png" alt="12min" style="height:17px; width:auto; display:block;">
+                <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.16);">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"></circle><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"></path></svg>
+                </span>
+              </div>
+
+              <div class="glass-card" style="padding:16px;">
+                <div style="position:absolute; top:-50px; right:-50px; width:150px; height:150px; border-radius:50%; background:rgba(255,255,255,0.07); filter:blur(34px); pointer-events:none;"></div>
+                <div style="position:relative;">
+
+                  <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                    <div style="display:flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:12px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); flex-shrink:0;">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1" fill="#FFFFFF"></circle></svg>
+                    </div>
+                    <div>
+                      <div style="font-family:'Poppins',sans-serif; font-size:22px; font-weight:700; letter-spacing:-0.02em; color:#FFFFFF; line-height:1.1;">3.500+</div>
+                      <div style="font-size:12px; color:#9095A2;">Microbooks disponíveis</div>
+                    </div>
+                  </div>
+
+                  <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
+                    <div style="display:flex; justify-content:space-between; font-size:11px;">
+                      <span style="color:#9095A2;">[Inserir métrica real]</span>
+                      <span style="color:#FFFFFF; font-weight:600;">[Inserir %]</span>
+                    </div>
+                    <div style="height:6px; width:100%; border-radius:999px; background:rgba(255,255,255,0.12); overflow:hidden;">
+                      <div style="height:100%; width:78%; border-radius:999px; background:linear-gradient(90deg,#FFFFFF,{{accent2}});"></div>
+                    </div>
+                  </div>
+
+                  <div style="height:1px; width:100%; background:rgba(255,255,255,0.12); margin-bottom:14px;"></div>
+
+                  <div style="display:grid; grid-template-columns:1fr 1px 1fr 1px 1fr; gap:8px; align-items:center;">
+                    <div class="glass-stat">
+                      <span style="font-family:'Poppins',sans-serif; font-size:15px; font-weight:700; color:#FFFFFF;">12 min</span>
+                      <span style="font-size:8px; letter-spacing:0.08em; text-transform:uppercase; color:#858B99;">Por conteúdo</span>
+                    </div>
+                    <div class="glass-divider"></div>
+                    <div class="glass-stat">
+                      <span style="font-family:'Poppins',sans-serif; font-size:15px; font-weight:700; color:#FFFFFF;">Texto</span>
+                      <span style="font-size:8px; letter-spacing:0.08em; text-transform:uppercase; color:#858B99;">e áudio</span>
+                    </div>
+                    <div class="glass-divider"></div>
+                    <div class="glass-stat">
+                      <span style="font-family:'Poppins',sans-serif; font-size:15px; font-weight:700; color:#FFFFFF;">[Inserir]</span>
+                      <span style="font-size:8px; letter-spacing:0.08em; text-transform:uppercase; color:#858B99;">[Métrica]</span>
+                    </div>
+                  </div>
+
+                  <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;">
+                    <span class="glass-tag" style="font-size:9px; padding:4px 10px;">
+                      <span style="position:relative; display:inline-flex; width:7px; height:7px;">
+                        <span class="live-ping"></span>
+                        <span style="position:relative; display:inline-flex; width:7px; height:7px; border-radius:50%; background:{{accent2}};"></span>
+                      </span>
+                      NOVOS CONTEÚDOS
+                    </span>
+                    <span class="glass-tag" style="font-size:9px; padding:4px 10px;">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="{{accent2}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                      LEIA OU OUÇA
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="glass-card" style="padding:16px 0 18px;">
+                <h3 style="margin:0 0 12px 0; padding:0 16px; font-family:'Inter',sans-serif; font-size:12px; font-weight:500; color:#9095A2;">Livros que você encontra no 12min</h3>
+                <div class="mq-window">
+                  <div class="mq-track">
+                    <sc-for list="{{marquee}}" as="cover" hint-placeholder-count="24">
+                      <img src="{{cover.src}}" alt="">
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+
+              <div class="glass-card" style="padding:14px;">
+                <div style="position:relative; display:flex; align-items:center; gap:12px;">
+                  <img src="{{featuredCover}}" alt="" style="width:40px; height:58px; object-fit:cover; border-radius:6px; display:block; flex-shrink:0; background:rgba(255,255,255,0.1);">
+                  <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:6px;">
+                    <span style="font-size:12px; font-weight:600; color:#FFFFFF;">[Inserir título do microbook]</span>
+                    <span style="font-size:10px; color:#858B99;">Continue de onde parou</span>
+                    <div style="height:4px; width:100%; border-radius:999px; background:rgba(255,255,255,0.12); overflow:hidden;">
+                      <div style="height:100%; width:55%; border-radius:999px; background:{{accent2}};"></div>
+                    </div>
+                  </div>
+                  <span style="display:flex; align-items:center; justify-content:center; width:30px; height:30px; border-radius:50%; background:{{accent2}}; flex-shrink:0;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="#131937" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="phone-tabbar">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{accent2}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.6 12 3.6l9 7v9a1.4 1.4 0 0 1-1.4 1.4H4.4A1.4 1.4 0 0 1 3 19.6z"></path></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.6-3.6"></path></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+            </div>
+            <div class="phone-home"></div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</div>
+<!-- ===== fim do bloco escuro ===== -->
+
+<!-- ============ 3. CLAREZA DE OBJETIVO ============ -->
+<section style="position:relative; width:100%; background:transparent;">
+  <div class="section-inner">
+    <span class="eyebrow ov-eyebrow" style="max-width:640px; font-size:14px; letter-spacing:0.01em; text-transform:none; line-height:1.5;">Você não precisa começar por todos os livros. Precisa começar pelo conhecimento certo.</span>
+    <h2 class="ov-title">Antes de pensar em ler mais, você precisa entender o que quer aprender.</h2>
+    <div class="ov-grid">
+      <div class="ov-media">
+        <img src="./assets/db16bed8a756a764e21c9d55c7236a39.jpg" alt="Pessoa cercada de livros sem saber por onde começar" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+      </div>
+      <div>
+        <p class="ov-lead">O problema é tentar aprender tudo ao mesmo tempo. O 12min ajuda você a encontrar conhecimento de acordo com aquilo que procura.</p>
+        <ul class="ov-list">
+          <li><span class="ov-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Talvez seu objetivo seja crescer profissionalmente.</li>
+          <li><span class="ov-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Talvez queira melhorar sua liderança, seus relacionamentos, sua organização ou sua vida financeira.</li>
+          <li><span class="ov-check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Ou simplesmente queira ampliar seu repertório.</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:64px; display:flex; flex-direction:column; gap:24px; max-width:760px;">
+      <div>
+        <button type="button" class="btn-primary">Encontrar meu próximo microbook</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. COMO FUNCIONA ============ -->
+<section id="como-funciona" style="width:100%; background:transparent;">
+  <div class="section-inner">
+    <span class="eyebrow" style="display:block; margin-bottom:16px; max-width:640px; font-size:14px; letter-spacing:0.01em; text-transform:none; line-height:1.5;">Quanto mais fácil for começar, mais fácil fica continuar.</span>
+    <h2 style="margin:0 0 40px 0; max-width:760px; font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(26px,3.6vw,38px); line-height:1.22; letter-spacing:-0.02em; color:#131937;">Veja como transformar 12 minutos em uma rotina de aprendizado.</h2>
+    <div class="steps-panel">
+      <div class="steps-panel-inner">
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#131937" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1" fill="#131937"></circle></svg>
+          <h3 style="margin:0; font-family:'Poppins',sans-serif; font-weight:600; font-size:16px; color:#131937;">Escolha um objetivo</h3>
+          <p style="margin:0; font-family:'Inter',sans-serif; font-size:14px; line-height:1.5; color:#5E6471;">Encontre conteúdos relacionados ao que você quer desenvolver.</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#131937" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <h3 style="margin:0; font-family:'Poppins',sans-serif; font-weight:600; font-size:16px; color:#131937;">Escolha um microbook</h3>
+          <p style="margin:0; font-family:'Inter',sans-serif; font-size:14px; line-height:1.5; color:#5E6471;">Explore mais de 3.500 conteúdos baseados nos principais conceitos de grandes livros.</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#131937" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+          <h3 style="margin:0; font-family:'Poppins',sans-serif; font-weight:600; font-size:16px; color:#131937;">Leia ou ouça</h3>
+          <p style="margin:0; font-family:'Inter',sans-serif; font-size:14px; line-height:1.5; color:#5E6471;">Aprenda de acordo com o momento e a forma que funciona melhor para você.</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#131937" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2.1l4 4-4 4"></path><path d="M3 12.6v-2a4 4 0 0 1 4-4h14"></path><path d="M7 21.9l-4-4 4-4"></path><path d="M21 11.4v2a4 4 0 0 1-4 4H3"></path></svg>
+          <h3 style="margin:0; font-family:'Poppins',sans-serif; font-weight:600; font-size:16px; color:#131937;">Continue aprendendo</h3>
+          <p style="margin:0; font-family:'Inter',sans-serif; font-size:14px; line-height:1.5; color:#5E6471;">Crie sua biblioteca e receba recomendações para descobrir novos conteúdos.</p>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:40px; display:flex; flex-direction:column; gap:20px; max-width:760px;">
+      <div>
+        <button type="button" class="btn-primary">Começar agora</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEGUNDO BLOCO ESCURO: volta ao azul, atrás dos depoimentos ===== -->
+<div id="dark-block-2" style="position:relative; width:100%; background:linear-gradient(180deg,#F4F5F8 0,#F4F5F8 30vh,#EBEDF7 38vh,#D9DDF0 46vh,#BEC5E6 54vh,#9FA7D6 62vh,#8089C4 70vh,#6470B0 78vh,#4F5D9C 86vh,#3E4C89 94vh,#323E75 102vh,#2A3466 110vh,#242D5A 118vh,#1F274F 126vh,#1B2247 134vh,#181E40 142vh,#151B3B 150vh,#131937 160vh,#131937 100%);">
+
+<!-- ============ 4. PROVA SOCIAL ============ -->
+<section style="width:100%; background:transparent;">
+  <div class="section-inner">
+    <div style="max-width:760px; display:flex; flex-direction:column; gap:12px; margin-bottom:48px;">
+      <span class="eyebrow" style="display:block; margin-bottom:4px; max-width:640px; font-size:14px; letter-spacing:0.01em; text-transform:none; line-height:1.5;">O objetivo não é aprender tudo de uma vez. É criar consistência.</span>
+      <h2 style="margin:0; font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(26px,3.6vw,38px); line-height:1.22; color:#131937;">Mas será que alguns minutos por dia realmente fazem diferença?</h2>
+      <p style="margin:0; font-size:18px; line-height:1.6; color:#5E6471;">A melhor maneira de descobrir é observar quem já colocou o 12min na própria rotina.</p>
+    </div>
+    <div class="tst-columns">
+      <div class="tst-col tst-col-1">
+        <div class="tst-track" style="animation-duration:26s;">
+          <sc-for list="{{tstCol1}}" as="t" hint-placeholder-count="6">
+            <div class="tst-card">
+              <p style="margin:0; font-family:'Inter',sans-serif; font-size:16px; line-height:1.55; color:#131937;">"{{t.quote}}"</p>
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:40px; height:40px; border-radius:50%; background:#E1E7FF; border:2px dashed #C7C9D2; flex-shrink:0;"></div>
+                <div style="display:flex; flex-direction:column;">
+                  <span style="font-size:14px; font-weight:600; color:#131937;">{{t.name}}</span>
+                  <span style="font-size:13px; color:#858B99;">{{t.role}}</span>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div class="tst-col tst-col-2">
+        <div class="tst-track" style="animation-duration:32s;">
+          <sc-for list="{{tstCol2}}" as="t" hint-placeholder-count="6">
+            <div class="tst-card">
+              <p style="margin:0; font-family:'Inter',sans-serif; font-size:16px; line-height:1.55; color:#131937;">"{{t.quote}}"</p>
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:40px; height:40px; border-radius:50%; background:#E1E7FF; border:2px dashed #C7C9D2; flex-shrink:0;"></div>
+                <div style="display:flex; flex-direction:column;">
+                  <span style="font-size:14px; font-weight:600; color:#131937;">{{t.name}}</span>
+                  <span style="font-size:13px; color:#858B99;">{{t.role}}</span>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div class="tst-col tst-col-3">
+        <div class="tst-track" style="animation-duration:29s;">
+          <sc-for list="{{tstCol3}}" as="t" hint-placeholder-count="6">
+            <div class="tst-card">
+              <p style="margin:0; font-family:'Inter',sans-serif; font-size:16px; line-height:1.55; color:#131937;">"{{t.quote}}"</p>
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:40px; height:40px; border-radius:50%; background:#E1E7FF; border:2px dashed #C7C9D2; flex-shrink:0;"></div>
+                <div style="display:flex; flex-direction:column;">
+                  <span style="font-size:14px; font-weight:600; color:#131937;">{{t.name}}</span>
+                  <span style="font-size:13px; color:#858B99;">{{t.role}}</span>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 5. PARA QUE SERVE ============ -->
+<section style="width:100%; background:transparent;">
+  <div class="section-inner">
+    <span class="eyebrow ov-eyebrow" style="max-width:640px; font-size:14px; letter-spacing:0.01em; text-transform:none; line-height:1.5; color:#FFFFFF;">Primeiro você descobre. Depois decide onde quer aprofundar.</span>
+    <h2 class="ov-title" style="color:#FFFFFF;">Existe uma diferença importante entre conhecer um livro e ler um livro.</h2>
+    <div class="ov-grid">
+      <div class="ov-media">
+        <img src="./assets/3204a3fa24b7314a22dccb90927d41c3.jpg" alt="Profissional usando o 12min no intervalo do trabalho" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;">
+      </div>
+      <div>
+        <p class="ov-lead" style="color:#D6DAE6;">O 12min não pretende substituir a leitura completa. Ele permite que você conheça as principais ideias de uma obra, entenda seus conceitos centrais e descubra quais livros realmente despertam seu interesse.</p>
+        <ul class="ov-list">
+          <li style="color:#D6DAE6;"><span class="ov-check" style="background:rgba(255,255,255,0.18);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="{{accent2}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Descobrir novos livros</li>
+          <li style="color:#D6DAE6;"><span class="ov-check" style="background:rgba(255,255,255,0.18);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="{{accent2}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Revisar conhecimentos</li>
+          <li style="color:#D6DAE6;"><span class="ov-check" style="background:rgba(255,255,255,0.18);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="{{accent2}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Explorar assuntos diferentes</li>
+          <li style="color:#D6DAE6;"><span class="ov-check" style="background:rgba(255,255,255,0.18);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="{{accent2}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Aprender durante pequenos intervalos</li>
+          <li style="color:#D6DAE6;"><span class="ov-check" style="background:rgba(255,255,255,0.18);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="{{accent2}}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Criar uma rotina de aprendizado</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:64px; display:flex; flex-direction:column; gap:24px; max-width:760px;">
+      <div>
+        <button type="button" class="btn-light">
+          Explorar os microbooks
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#131937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. BÔNUS ============ -->
+<section style="width:100%; background:transparent;">
+  <div class="section-inner">
+    <span class="eyebrow" style="display:block; max-width:640px; font-size:14px; letter-spacing:0.01em; text-transform:none; line-height:1.5; color:#FFFFFF;">Tudo para facilitar sua jornada de aprendizado.</span>
+    <h2 style="margin:16px 0 0 0; max-width:760px; font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(26px,3.6vw,38px); line-height:1.22; color:#FFFFFF;">E sua experiência não termina no microbook.</h2>
+    <p style="margin:12px 0 0 0; max-width:620px; font-size:18px; line-height:1.6; color:#C7C9D6;">Escolha o plano que melhor combina com a sua jornada.</p>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-head">
+          <span class="price-plan">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5l3 1.6"></path></svg>
+            Lite
+          </span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <span class="price-old">De R$ 30</span>
+          <span class="price-value">
+            <span class="price-main">R$ 16,12</span>
+            <span class="price-period">/mês</span>
+          </span>
+        </div>
+        <button type="button" class="btn-outline-dark" style="width:100%;">Começar agora</button>
+        <ul class="price-list">
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 12.2l2.4 2.4 4.6-5"></path></svg>3.500+ microbooks</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 12.2l2.4 2.4 4.6-5"></path></svg>Apenas modo texto</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 12.2l2.4 2.4 4.6-5"></path></svg>Inclui acesso offline</li>
+        </ul>
+      </div>
+      <div class="price-card is-featured">
+        <div class="price-head">
+          <span class="price-plan">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            Premium
+          </span>
+          <span class="price-badge">Mais popular</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <span class="price-old">De R$ 52</span>
+          <span class="price-value">
+            <span class="price-main">R$ 26,47</span>
+            <span class="price-period">/mês</span>
+          </span>
+        </div>
+        <button type="button" class="btn-light" style="width:100%;">Começar agora</button>
+        <ul class="price-list">
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 12.2l2.4 2.4 4.6-5"></path></svg>Tudo do Lite +</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="{{accent2}}" style="flex-shrink:0; margin-top:2px;" aria-hidden="true"><path d="M12 2.6l2.8 6.1 6.6.8-4.9 4.5 1.3 6.6L12 17.2 6.2 20.6l1.3-6.6L2.6 9.5l6.6-.8z"></path></svg>Modo áudio</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="{{accent2}}" style="flex-shrink:0; margin-top:2px;" aria-hidden="true"><path d="M12 2.6l2.8 6.1 6.6.8-4.9 4.5 1.3 6.6L12 17.2 6.2 20.6l1.3-6.6L2.6 9.5l6.6-.8z"></path></svg>12min Radar</li>
+        </ul>
+        <p class="price-note">Mais popular entre quem quer evoluir rápido com trilhas e recomendações.</p>
+      </div>
+      <div class="price-card">
+        <div class="price-head">
+          <span class="price-plan">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.9 6.3 6.8.8-5 4.6 1.3 6.8L12 17.3 6 20.5l1.3-6.8-5-4.6 6.8-.8z"></path></svg>
+            Gold
+          </span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <span class="price-old">De R$ 78</span>
+          <span class="price-value">
+            <span class="price-main">R$ 39,70</span>
+            <span class="price-period">/mês</span>
+          </span>
+        </div>
+        <button type="button" class="btn-outline-dark" style="width:100%;">Começar agora</button>
+        <ul class="price-list">
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0; margin-top:2px;" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 12.2l2.4 2.4 4.6-5"></path></svg>Tudo do Premium +</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="{{accent2}}" style="flex-shrink:0; margin-top:2px;" aria-hidden="true"><path d="M12 2.6l2.8 6.1 6.6.8-4.9 4.5 1.3 6.6L12 17.2 6.2 20.6l1.3-6.6L2.6 9.5l6.6-.8z"></path></svg>12min English</li>
+            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="{{accent2}}" style="flex-shrink:0; margin-top:2px;" aria-hidden="true"><path d="M12 2.6l2.8 6.1 6.6.8-4.9 4.5 1.3 6.6L12 17.2 6.2 20.6l1.3-6.6L2.6 9.5l6.6-.8z"></path></svg>12min IA</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. SOBRE / AUTORIDADE ============ -->
+<section style="width:100%; background:transparent;">
+  <div class="section-inner">
+    <div class="two-col-rev">
+      <div style="width:100%; aspect-ratio:1/1; max-width:360px; border-radius:8px; overflow:hidden;">
+        <img src="./assets/2facb649a129c7eb5c47729c838b27f7.jpg" alt="Especialista responsável pela curadoria do 12min" style="width:100%; height:100%; object-fit:cover; display:block;">
+      </div>
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <span class="eyebrow" style="display:block; max-width:640px; font-size:14px; letter-spacing:0.01em; text-transform:none; line-height:1.5; color:#FFFFFF;">Conhecimento fica mais poderoso quando você consegue fazer uso dele.</span>
+        <h2 style="margin:0; font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(26px,3.6vw,38px); line-height:1.22; color:#FFFFFF;">Por trás do 12min existe uma ideia simples.</h2>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <p style="margin:0; font-size:18px; line-height:1.6; color:#C7C9D6;">As pessoas querem aprender.</p>
+          <p style="margin:0; font-size:18px; line-height:1.6; color:#C7C9D6;">O que falta, muitas vezes, é uma maneira de colocar conhecimento dentro de uma rotina que já está cheia.</p>
+          <p style="margin:0; font-size:18px; line-height:1.6; color:#C7C9D6;">O 12min transforma grandes ideias em conteúdos curtos, diretos e acessíveis.</p>
+          <p style="margin:0; font-size:18px; line-height:1.6; color:#C7C9D6;">Hoje, são mais de 3.500 microbooks disponíveis.</p>
+        </div>
+        <div style="padding:16px; background:rgba(255,255,255,0.06); border:2px dashed rgba(255,255,255,0.22); border-radius:8px;">
+          <span style="font-size:14px; color:#C7C9D6; letter-spacing:0.02em;">[Inserir informações reais sobre o fundador ou especialista, caso seja utilizado]</span>
+        </div>
+        <div>
+          <button type="button" class="btn-light">
+            Conhecer o 12min
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#131937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. ASSUNTOS ============ -->
+<section id="assuntos" style="width:100%; background:transparent;">
+  <div class="section-inner">
+    <div class="feat-grid">
+
+      <div class="feat-list">
+        <div class="feat-track">
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5"></path><path d="M5 10.5V20h14v-9.5"></path><path d="M9.5 20v-5h5v5"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Negócios</span>
+            <span class="feat-sub">Estratégia, mercado e modelos que funcionam</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7.5" width="18" height="12" rx="2"></rect><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Carreira</span>
+            <span class="feat-sub">Transições, reputação e próximos passos</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3 19a6 6 0 0 1 12 0"></path><path d="M16.5 6.5a3 3 0 0 1 0 6"></path><path d="M18 19a5.6 5.6 0 0 0-2-4"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Liderança</span>
+            <span class="feat-sub">Times, decisões difíceis e cultura</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.5C6.5 17 3.5 13.7 3.5 10.2A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 8.5 2.6c0 3.5-3 6.8-8.5 10.3z"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Comportamento</span>
+            <span class="feat-sub">Hábitos, foco e como a mente decide</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 14.4 9l5.6.5-4.3 3.9 1.3 5.6L12 16.2 7 19l1.3-5.6L4 9.5 9.6 9z"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Desenvolvimento pessoal</span>
+            <span class="feat-sub">Propósito, disciplina e autoconhecimento</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7v10"></path><path d="M14.8 9.4a3 3 0 0 0-2.8-1.3c-1.7 0-2.6.9-2.6 2 0 2.8 5.6 1.4 5.6 4.2 0 1.2-1 2.2-2.9 2.2a3.2 3.2 0 0 1-3-1.5"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Finanças</span>
+            <span class="feat-sub">Dinheiro, investimentos e independência</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="7.5"></circle><path d="M12 9.5V13l2.4 1.4"></path><path d="M9.5 3h5"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Produtividade</span>
+            <span class="feat-sub">Tempo, rotina e gestão da atenção</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5h3.2l1.8-4 2.6 8 2.2-5 1.4 3h4.8"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Saúde e bem-estar</span>
+            <span class="feat-sub">Sono, energia e equilíbrio no dia a dia</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4.5" width="16" height="12" rx="2"></rect><path d="M8 20.5h8"></path><path d="M12 16.5v4"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Tecnologia e IA</span>
+            <span class="feat-sub">O que está mudando e o que fazer com isso</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15.5H6.5A2.5 2.5 0 0 0 4 21z"></path><path d="M8 7.5h7"></path><path d="M8 11h5"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">História e filosofia</span>
+            <span class="feat-sub">Ideias que explicam o mundo de hoje</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5"></path><path d="M5 10.5V20h14v-9.5"></path><path d="M9.5 20v-5h5v5"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Negócios</span>
+            <span class="feat-sub">Estratégia, mercado e modelos que funcionam</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7.5" width="18" height="12" rx="2"></rect><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Carreira</span>
+            <span class="feat-sub">Transições, reputação e próximos passos</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><path d="M3 19a6 6 0 0 1 12 0"></path><path d="M16.5 6.5a3 3 0 0 1 0 6"></path><path d="M18 19a5.6 5.6 0 0 0-2-4"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Liderança</span>
+            <span class="feat-sub">Times, decisões difíceis e cultura</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.5C6.5 17 3.5 13.7 3.5 10.2A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 8.5 2.6c0 3.5-3 6.8-8.5 10.3z"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Comportamento</span>
+            <span class="feat-sub">Hábitos, foco e como a mente decide</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 14.4 9l5.6.5-4.3 3.9 1.3 5.6L12 16.2 7 19l1.3-5.6L4 9.5 9.6 9z"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Desenvolvimento pessoal</span>
+            <span class="feat-sub">Propósito, disciplina e autoconhecimento</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7v10"></path><path d="M14.8 9.4a3 3 0 0 0-2.8-1.3c-1.7 0-2.6.9-2.6 2 0 2.8 5.6 1.4 5.6 4.2 0 1.2-1 2.2-2.9 2.2a3.2 3.2 0 0 1-3-1.5"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Finanças</span>
+            <span class="feat-sub">Dinheiro, investimentos e independência</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="7.5"></circle><path d="M12 9.5V13l2.4 1.4"></path><path d="M9.5 3h5"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Produtividade</span>
+            <span class="feat-sub">Tempo, rotina e gestão da atenção</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5h3.2l1.8-4 2.6 8 2.2-5 1.4 3h4.8"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Saúde e bem-estar</span>
+            <span class="feat-sub">Sono, energia e equilíbrio no dia a dia</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4.5" width="16" height="12" rx="2"></rect><path d="M8 20.5h8"></path><path d="M12 16.5v4"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">Tecnologia e IA</span>
+            <span class="feat-sub">O que está mudando e o que fazer com isso</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        <div class="feat-row">
+          <span class="feat-ico">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15.5H6.5A2.5 2.5 0 0 0 4 21z"></path><path d="M8 7.5h7"></path><path d="M8 11h5"></path></svg>
+          </span>
+          <span class="feat-txt">
+            <span class="feat-name">História e filosofia</span>
+            <span class="feat-sub">Ideias que explicam o mundo de hoje</span>
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#858B99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 style="margin:0 0 20px 0; font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(26px,3.6vw,38px); line-height:1.22; color:#FFFFFF;">Agora imagine quantos assuntos você poderia explorar ao longo de um ano.</h2>
+        <p style="margin:0; max-width:520px; font-size:18px; line-height:1.6; color:#C7C9D6;"><strong style="color:#FFFFFF; font-weight:600;">São mais de 3.500 microbooks</strong> em dezenas de categorias — tudo isso sem precisar decidir qual livro inteiro você terá tempo para terminar.</p>
+        <div class="feat-chips">
+          <span class="feat-chip feat-chip-accent">3.500+ microbooks</span>
+          <span class="feat-chip">Leia ou ouça</span>
+          <span class="feat-chip">12 minutos por conteúdo</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. GARANTIA ============ -->
+<section style="width:100%; background:transparent;">
+  <div class="section-inner">
+    <div class="glass-card" style="max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:20px; padding:32px;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="{{accent2}}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3.5v6c0 5-3.4 8.8-8 10.5-4.6-1.7-8-5.5-8-10.5v-6L12 2z"></path><path d="M9 12.2l2 2 4-4.4"></path></svg>
+      <span class="eyebrow eyebrow-on-dark">Garantia</span>
+      <h2 style="margin:0; font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(26px,3.6vw,38px); line-height:1.22; color:#FFFFFF;">E se você descobrir que o 12min não combina com sua rotina?</h2>
+      <div style="padding:20px; background:rgba(255,255,255,0.06); border:2px dashed rgba(255,255,255,0.22); border-radius:8px;">
+        <span style="font-size:14px; color:#C7C9D6; letter-spacing:0.02em;">[Inserir condição real da garantia]</span>
+      </div>
+      <p style="margin:0; font-size:18px; line-height:1.6; color:#C7C9D6;">Você pode conhecer a plataforma e experimentar a proposta de microaprendizado antes de tomar sua decisão definitiva.</p>
+      <div>
+        <button type="button" class="btn-primary">Experimentar o 12min</button>
+      </div>
+      <p style="margin:0; font-family:'Poppins',sans-serif; font-style:italic; font-size:20px; line-height:1.5; color:#FFFFFF;">Você não precisa ter certeza antes de conhecer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. OFERTA ============ -->
+<section id="oferta" style="width:100%; background:transparent;">
+  <div class="section-inner">
+    <div>
+    <span class="eyebrow eyebrow-on-dark" style="display:block; margin-bottom:12px;">Oferta</span>
+    <h2 style="margin:0 0 40px 0; max-width:680px; font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(26px,3.6vw,38px); line-height:1.22; color:#FFFFFF;">Tudo isso em uma única plataforma.</h2>
+
+    <div style="max-width:680px; margin-bottom:8px;">
+      <div class="offer-row">
+        <span style="display:flex; align-items:center; gap:10px; font-size:16px; color:#C7C9D6;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><circle cx="12" cy="12" r="11" fill="{{accent}}"></circle><path d="M8 12.5l2.5 2.5L16 9.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>[Inserir entrega real da oferta]</span>
+        <span style="font-size:16px; color:#9095A2;">[Inserir preço]</span>
+      </div>
+      <div class="offer-row">
+        <span style="display:flex; align-items:center; gap:10px; font-size:16px; color:#C7C9D6;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><circle cx="12" cy="12" r="11" fill="{{accent}}"></circle><path d="M8 12.5l2.5 2.5L16 9.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>[Inserir entrega real da oferta]</span>
+        <span style="font-size:16px; color:#9095A2;">[Inserir preço]</span>
+      </div>
+      <div class="offer-row">
+        <span style="display:flex; align-items:center; gap:10px; font-size:16px; color:#C7C9D6;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><circle cx="12" cy="12" r="11" fill="{{accent}}"></circle><path d="M8 12.5l2.5 2.5L16 9.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>[Inserir bônus real da oferta]</span>
+        <span style="font-size:16px; color:#9095A2;">[Inserir preço do bônus]</span>
+      </div>
+      <div class="offer-row" style="border-bottom:none; padding-top:20px;">
+        <span style="font-size:17px; font-weight:600; color:#FFFFFF;">Valor total</span>
+        <span style="font-size:17px; font-weight:600; color:#FFFFFF;">[Inserir valor total da oferta]</span>
+      </div>
+    </div>
+
+    <div style="max-width:680px; padding:32px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:16px; display:flex; flex-direction:column; gap:20px; align-items:flex-start; margin-top:24px;">
+      <span class="pricing-badge">Oferta especial</span>
+      <div style="display:flex; flex-direction:column; gap:4px;">
+        <span style="font-size:16px; color:#858B99; text-decoration:line-through;">De R$ [inserir valor anterior]</span>
+        <span style="font-family:'Poppins',sans-serif; font-size:clamp(26px,3.4vw,36px); font-weight:700; color:{{accent}};">12x de R$ [inserir parcela]</span>
+      </div>
+      <button type="button" class="btn-primary">Quero assinar agora</button>
+    </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. FAQ ============ -->
+<section id="faq" style="width:100%; background:transparent;">
+  <div class="section-inner">
+    <span class="eyebrow eyebrow-on-dark" style="display:block; margin-bottom:12px;">FAQ</span>
+    <h2 style="margin:0 0 40px 0; max-width:680px; font-family:'Poppins',sans-serif; font-weight:700; font-size:clamp(26px,3.6vw,38px); line-height:1.22; color:#FFFFFF;">Antes de começar, algumas respostas.</h2>
+
+    <div style="max-width:760px;">
+      <details class="faq-details" open="">
+        <summary>O que é um microbook?<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6DFFB4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></summary>
+        <p>É um conteúdo que apresenta os principais aprendizados e conceitos de um livro de forma rápida e objetiva.</p>
+      </details>
+      <details class="faq-details">
+        <summary>Quanto tempo leva?<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6DFFB4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></summary>
+        <p>A proposta é consumir cada conteúdo em aproximadamente 12 minutos.</p>
+      </details>
+      <details class="faq-details">
+        <summary>Posso escolher os assuntos que quero aprender?<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6DFFB4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></summary>
+        <p>Sim. Você pode explorar diferentes categorias e escolher os conteúdos de acordo com seus interesses.</p>
+      </details>
+      <details class="faq-details">
+        <summary>Preciso ouvir ou posso ler?<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6DFFB4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></summary>
+        <p>Isso depende dos recursos disponíveis no plano contratado.</p>
+      </details>
+      <details class="faq-details">
+        <summary>O 12min substitui os livros?<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6DFFB4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></summary>
+        <p>Não. Ele ajuda você a conhecer e absorver os principais conceitos de uma obra e também pode servir como ponto de partida para leituras completas.</p>
+      </details>
+      <details class="faq-details">
+        <summary>Quantos conteúdos existem?<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6DFFB4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></summary>
+        <p>Mais de 3.500 microbooks.</p>
+      </details>
+      <div class="faq-details" style="border-bottom:none;">
+        <span style="font-size:14px; color:#858B99; letter-spacing:0.02em;">[Inserir outras dúvidas reais da oferta]</span>
+      </div>
+    </div>
+
+    <div style="margin-top:48px; display:flex; flex-direction:column; gap:20px; max-width:760px;">
+      <img src="./assets/941974208fe407f871c73b140c621abe.png" alt="" style="width:40px; height:40px; display:block; opacity:0.9;">
+      <div style="display:flex; flex-direction:column; gap:4px;">
+        <p style="margin:0; font-family:'Poppins',sans-serif; font-style:italic; font-size:20px; line-height:1.5; color:#FFFFFF;">O primeiro passo não precisa ser grande.</p>
+        <p style="margin:0; font-family:'Poppins',sans-serif; font-style:italic; font-size:20px; line-height:1.5; color:#FFFFFF;">Pode começar com 12 minutos.</p>
+      </div>
+      <div>
+        <button type="button" class="btn-primary">Começar agora</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+<!-- ===== fim do segundo bloco escuro ===== -->
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#4357AD","options":["#4357AD","#6DFFB4","#131937","#FFFFFF"]},"accent2":{"editor":"color","default":"#6DFFB4"},"$preview":{"width":1440,"height":1600}}'>
+// Real book covers used on the hero's flip-cards.
+const COVER_URLS = [
+  './assets/ed8071ab35869f7f6b9f2dd147ff8004.png',
+  './assets/c45feb811636da362179629c8dcde55a.png',
+  './assets/e5f8d5712453e4fa9427923b6df1bbb9.png',
+  './assets/b6ee96274d96e76841e1a6cb61b11aab.png',
+  './assets/aa68f4a6661ae10bbb2d33a85d7a4c7c.png',
+  './assets/b14daf0b04de9265ec11232a64c41d0f.png',
+  './assets/f14e6a6e1853432416d68fd06956cac6.png',
+  './assets/f8f002c02427d91c866dc31b7b3a9168.png',
+  './assets/d1cccc591a23502241670070040356c6.png',
+  './assets/eaed8fe2d6d157ed684ccc1e165daf53.png',
+  './assets/3306006c52de18a73d3df9bba1d80d6b.png',
+  './assets/9f74b71d13797cc2e74661946f83e387.png',
+];
+// Capas repetidas duas vezes para o marquee rodar em loop contínuo.
+const MARQUEE_COVERS = COVER_URLS.concat(COVER_URLS).map(function (src) {
+  return { src: src };
+});
+
+const BOOKS = Array.from({ length: 16 }).map(function (_, i) {
+  return {
+    index: String(i + 1).padStart(2, '0'),
+    cover: COVER_URLS[i % COVER_URLS.length],
+  };
+});
+
+// Testimonials — placeholder slots (no real quotes yet), split into 3 columns
+// that auto-scroll vertically; each column's list is duplicated below so the
+// CSS translateY(-50%) loop is seamless.
+const TESTIMONIALS = Array.from({ length: 9 }).map(function (_, i) {
+  return {
+    quote: 'Espaço para depoimento real ' + (i + 1),
+    name: '[Nome ' + (i + 1) + ']',
+    role: '[Contexto real]',
+  };
+});
+function doubledColumn(start) {
+  var col = TESTIMONIALS.slice(start, start + 3);
+  return col.concat(col);
+}
+const TST_COL_1 = doubledColumn(0);
+const TST_COL_2 = doubledColumn(3);
+const TST_COL_3 = doubledColumn(6);
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      phase: 'scatter',
+      settling: false,
+      scrollProgress: 0,
+      parallax: 0,
+      vw: typeof window !== 'undefined' ? window.innerWidth : 1440,
+      vh: typeof window !== 'undefined' ? window.innerHeight : 900,
+      presVisible: false,
+      scatter: BOOKS.map(function () {
+        return {
+          x: (Math.random() - 0.5) * 900,
+          y: (Math.random() - 0.5) * 480,
+          rot: (Math.random() - 0.5) * 160,
+        };
+      }),
+    };
+    this.updateScrollProgress = this.updateScrollProgress.bind(this);
+  }
+
+  componentDidMount() {
+    var self = this;
+    this._t1 = setTimeout(function () { self.setState({ phase: 'line' }); }, 600);
+    this._t2 = setTimeout(function () { self.setState({ phase: 'circle', settling: true }); }, 3000);
+    // Enquanto "settling", as capas usam a transição longa da entrada;
+    // depois disso passam a seguir o scroll com a transição curta.
+    this._t3 = setTimeout(function () { self.setState({ settling: false }); }, 5000);
+
+    this._raf = null;
+    this._onScroll = function () {
+      if (self._raf) return;
+      self._raf = requestAnimationFrame(function () {
+        self._raf = null;
+        self.updateScrollProgress();
+      });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+
+    this._onResize = function () {
+      self.setState({ vw: window.innerWidth, vh: window.innerHeight });
+    };
+    window.addEventListener('resize', this._onResize);
+
+    this._sticky = document.getElementById('hero-sticky');
+    this._raf2 = null;
+    this._onMouseMove = function (e) {
+      if (!self._sticky) return;
+      var rect = self._sticky.getBoundingClientRect();
+      var rel = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      if (self._raf2) return;
+      self._raf2 = requestAnimationFrame(function () {
+        self._raf2 = null;
+        self.setState({ parallax: rel * 100 });
+      });
+    };
+    if (this._sticky) this._sticky.addEventListener('mousemove', this._onMouseMove);
+
+    this.updateScrollProgress();
+
+    var presEl = document.getElementById('presentation-section');
+    if (presEl && typeof IntersectionObserver !== 'undefined') {
+      this._presObserver = new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) {
+            self.setState({ presVisible: true });
+            self._presObserver.disconnect();
+            break;
+          }
+        }
+      }, { threshold: 0.2 });
+      this._presObserver.observe(presEl);
+    } else if (presEl) {
+      this.setState({ presVisible: true });
+    }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this._t1);
+    clearTimeout(this._t2);
+    clearTimeout(this._t3);
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('resize', this._onResize);
+    if (this._sticky) this._sticky.removeEventListener('mousemove', this._onMouseMove);
+    if (this._presObserver) this._presObserver.disconnect();
+  }
+
+  updateScrollProgress() {
+    var wrapper = document.getElementById('hero-scroll-wrapper');
+    if (!wrapper) return;
+    var rect = wrapper.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var total = rect.height - vh;
+    var scrolled = -rect.top;
+    var progress = total > 0 ? Math.min(Math.max(scrolled / total, 0), 1) : 0;
+    this.setState({ scrollProgress: progress });
+  }
+
+  renderVals() {
+    var phase = this.state.phase;
+    var settling = this.state.settling;
+    var scroll = this.state.scrollProgress;
+    var vw = this.state.vw;
+    var vh = this.state.vh;
+    var isMobile = vw < 700;
+    var cardW = isMobile ? 54 : 64;
+    var cardH = isMobile ? 81 : 96;
+    var n = BOOKS.length;
+
+    var circleRadius = Math.min(Math.min(vw, vh) * 0.32, 320);
+    // Arco "arco-íris" na parte de baixo, como no componente de referência.
+    var arcRadius = Math.min(vw, vh * 1.5) * (isMobile ? 1.4 : 1.1);
+    var arcApexY = vh * (isMobile ? 0.35 : 0.25);
+    var arcCenterY = arcApexY + arcRadius;
+    var spread = isMobile ? 84 : 104;
+    var startAngle = -90 - spread / 2;
+    var step = spread / (n - 1);
+    // scroll 0 -> 0.35: círculo vira arco. Depois: o arco gira (shuffle).
+    var morph = Math.max(0, Math.min(1, scroll / 0.45));
+    var shuffle = Math.max(0, Math.min(1, (scroll - 0.45) / 0.55));
+    var boundedRotation = -shuffle * spread * 0.8;
+    var parallax = this.state.parallax || 0;
+    var scatter = this.state.scatter;
+
+    var items = BOOKS.map(function (book, i) {
+      var x = 0, y = 0, rot = 0, scale = 1, opacity = 1;
+
+      if (phase === 'scatter') {
+        var s = scatter[i];
+        x = s.x; y = s.y; rot = s.rot; scale = 0.6; opacity = 0;
+      } else if (phase === 'line') {
+        var spacing = isMobile ? 48 : 70;
+        x = i * spacing - ((n - 1) * spacing) / 2;
+        y = 0; rot = 0; scale = 1; opacity = 1;
+      } else {
+        var angleCircle = (i / n) * 360;
+        var radCircle = (angleCircle * Math.PI) / 180;
+        var cx = Math.cos(radCircle) * circleRadius;
+        var cy = Math.sin(radCircle) * circleRadius;
+        var crot = angleCircle + 90;
+
+        var angleArc = startAngle + i * step + boundedRotation;
+        var radArc = (angleArc * Math.PI) / 180;
+        var ax = Math.cos(radArc) * arcRadius + parallax;
+        var ay = Math.sin(radArc) * arcRadius + arcCenterY;
+        var arot = angleArc + 90;
+        var ascale = isMobile ? 1.4 : 1.8;
+
+        var t = morph;
+        x = cx + (ax - cx) * t;
+        y = cy + (ay - cy) * t;
+        rot = crot + (arot - crot) * t;
+        scale = 1 + (ascale - 1) * t;
+        opacity = 1;
+      }
+
+      var transDuration = settling ? '1.9s' : (phase === 'circle' ? '0.45s' : '1.5s');
+      var transEase = 'cubic-bezier(0.22,1,0.36,1)';
+
+      return {
+        index: book.index,
+        cover: book.cover,
+        w: cardW,
+        h: cardH,
+        transform: 'translate(-50%, -50%) translate(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px) rotate(' + rot.toFixed(1) + 'deg) scale(' + scale.toFixed(3) + ')',
+        opacity: opacity,
+        transition: 'transform ' + transDuration + ' ' + transEase + ', opacity 0.6s ease',
+      };
+    });
+
+    var stage1Opacity = phase === 'circle' ? Math.max(0, Math.min(1, 1 - morph * 2)) : 0;
+
+    // O título não pode encostar nas capas: no desktop ele cabe dentro do anel,
+    // no mobile (anel pequeno demais) ele desce para baixo das capas.
+    var cardHalf = Math.max(cardW, cardH) / 2 + 16;
+    var innerRadius = circleRadius - cardHalf;
+    var titleFitsInside = innerRadius > 200;
+    var heroTitleMaxW = titleFitsInside ? Math.min(640, Math.round(innerRadius * 1.35)) : Math.round(vw * 0.86);
+    var heroTitleOffsetY = titleFitsInside ? 0 : Math.round(circleRadius + cardHalf + 44);
+    var stage1Y = heroTitleOffsetY + (phase === 'circle' ? 0 : 10);
+
+    // Stage 2 fades in and then STAYS visible (no fade-out) for the rest of the scroll.
+    var stage2Opacity = phase === 'circle' ? Math.max(0, Math.min(1, (morph - 0.8) / 0.2)) : 0;
+    var stage2Y = 10 - stage2Opacity * 10;
+
+    var hintOpacity = (phase === 'circle' && morph < 0.15) ? 1 : 0;
+
+    var presVisible = this.state.presVisible;
+    var presOpacity = presVisible ? 1 : 0;
+    var presY = presVisible ? 0 : 14;
+    var presBlur = presVisible ? 0 : 6;
+
+    return {
+      accent: this.props.accent ?? '#4357AD',
+      accent2: this.props.accent2 ?? '#6DFFB4',
+      items: items,
+      stage1Opacity: stage1Opacity,
+      stage1Y: stage1Y,
+      heroTitleMaxW: heroTitleMaxW,
+      stage2Opacity: stage2Opacity,
+      stage2Y: stage2Y,
+      hintOpacity: hintOpacity,
+      presOpacity: presOpacity,
+      presY: presY,
+      presBlur: presBlur,
+      marquee: MARQUEE_COVERS,
+      featuredCover: COVER_URLS[0],
+      tstCol1: TST_COL_1,
+      tstCol2: TST_COL_2,
+      tstCol3: TST_COL_3,
+    };
+  }
+}
+</script>
+</body>
+</html>
